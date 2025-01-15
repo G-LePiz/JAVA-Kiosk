@@ -12,11 +12,11 @@ public class Menu {
         this.menuItems = new ArrayList<MenuItem>();
     }
 
-    public String getMenus() { // 메뉴를 가져오기
+    public String getMenus() { // 카테고리를 가져오기
         return menus;
     }
 
-    public List<MenuItem> getMenuItems() { // 상세 아이템 조회
+    public List<MenuItem> getMenuItems() { // 상세 메뉴 조회
         return menuItems;
     }
 

@@ -12,15 +12,7 @@ public class Kiosk {
         this.menuList = menu;
     }
 
-    public List<Menu> getMenuList() {
-        return menuList;
-    }
-
-    public void setMenuList(List<Menu> menuList) {
-        this.menuList = menuList;
-    }
-
-    public List<MenuItem> getBag() {
+    public List<MenuItem> getBag() { // 장바구니 출력
         for (int i=0; i<bag.size(); i++){
             System.out.println("현재 장바구니 상태: " + bag.get(i));
         }
@@ -31,7 +23,7 @@ public class Kiosk {
     public void start() throws BadInputError {
             Scanner sc = new Scanner(System.in);
             while (true){
-                System.out.println("[ MAIN MENU ]");
+                System.out.println("[ MAIN MENU ]"); // 메인메뉴 출력
                 for (int i = 0; i < menuList.size(); i++) { // 상위 카테고리 출력
                     System.out.println(i+1 + "." + menuList.get(i));
                 }
@@ -54,11 +46,11 @@ public class Kiosk {
 
                     int secondChoice = sc.nextInt();
 
-                    if (secondChoice == 0){
+                    if (secondChoice == 0){ // 0을 입력시, break 해버림
                         break;
                     }
-                    if (secondChoice < 0 || secondChoice > selectedMenu.getMenuItems().size()){
-                        System.out.println("잘못된 입력입니다.");
+                    if (secondChoice < 0 || secondChoice > selectedMenu.getMenuItems().size()){ // 입력된 숫자가 0보다 작거나, 배열의 크기보다 크면 예외처리를 해버림
+                       throw new BadInputError();
                     }
 
                     MenuItem selectsecondmenu = selectedMenu.getMenuItems().get(secondChoice-1);
@@ -105,11 +97,11 @@ public class Kiosk {
                     System.out.println("====================================================");
                     System.out.println("[ Total ]");
                     Double totalamount = bag.stream().mapToDouble(i -> Double.valueOf(i.getPrice()*itemnum)).sum(); // 장바구니에 있는 제품을 다 더함.
-                    System.out.println("W " + totalamount);
+                    System.out.println("W " + selectedMenu.getMenuItems().get(secondChoice-1).getPrice());
                     System.out.println("1. 주문 | 2. 메뉴판");
                     if ("1".equals(sc.next())){
-                        //System.out.println("주문이 완료되었습니다. 금액은 W" + selectedMenu.getMenuItems().get(secondChoice-1).getPrice() +"입니다");
-                        //System.exit(0); // 주문후 시스템을 종료함
+//                        System.out.println("주문이 완료되었습니다. 금액은 W" + selectedMenu.getMenuItems().get(secondChoice-1).getPrice() +"입니다");
+//                        System.exit(0); // 주문후 시스템을 종료함
                         System.out.println("주문이 완료되어 결제창으로 넘어갑니다.");
                     } else if ("2".equals(sc.nextLine())){
                         System.out.println("메뉴판으로 돌아갑니다.");
