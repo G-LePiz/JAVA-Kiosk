@@ -23,7 +23,7 @@ public class Menu {
     public void addmenuItems(MenuItem menuItem){ // 메뉴 아이템 추가
         menuItems.add(menuItem);
     }
-    public void showMenuItems(){
+    public void showMenuItems(){ // 카테고리안에 있는 것을 출력
         for (int i = 0; i < menuItems.size(); i++) {
             System.out.println(i+1 + "." + menuItems.get(i));
         }
