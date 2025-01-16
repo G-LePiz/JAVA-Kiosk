@@ -5,20 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.example.Kiosk.Bag.bag;
+
 public class Kiosk {
     private List<Menu> menuList = new ArrayList<>(); // 메뉴 리스트 선언
-    private List<MenuItem> bag = new ArrayList<>(); // 장바구니 리스트
+    Bag b = new Bag();
+     // 장바구니 리스트
     public Kiosk(List<Menu> menu){
         this.menuList = menu;
     }
-
-    public List<MenuItem> getBag() { // 장바구니 출력
-        for (int i=0; i<bag.size(); i++){
-            System.out.println("현재 장바구니 상태: " + bag.get(i));
-        }
-        return bag;
-    }
-
 
     public void start() throws BadInputError {
             Scanner sc = new Scanner(System.in);
@@ -64,13 +59,13 @@ public class Kiosk {
                     System.out.println("1. 확인 | 2. 취소");
                     if ("1".equals(sc.next())){
                         System.out.println(selectsecondmenu + "이 장바구니에 추가되었습니다.");
-                        bag.add(selectsecondmenu);
+                        b.add(selectsecondmenu);
                         System.out.println("==================================================================");
                     } else if ("2".equals(sc.nextLine())){
                         System.out.println("주문을 취소합니다.");
                         break;
                     }
-                    getBag(); // 장바구니에 있는 아이템 조회
+                    b.getBag(); // 장바구니에 있는 아이템 조회
                     System.out.println("주문한 상품 갯수:" + itemnum);
                     System.out.println("추가로 더 주문하시겠습니까?");
                     System.out.println("1. 예 | 2. 아니요");
@@ -93,11 +88,11 @@ public class Kiosk {
 
                     System.out.println("====================================================");
                     System.out.println("[ Orders ]");
-                    System.out.println(getBag());
+                    System.out.println(b.getBag());
                     System.out.println("====================================================");
                     System.out.println("[ Total ]");
                     Double totalamount = bag.stream().mapToDouble(i -> Double.valueOf(i.getPrice()*itemnum)).sum(); // 장바구니에 있는 제품을 다 더함.
-                    System.out.println("W " + selectedMenu.getMenuItems().get(secondChoice-1).getPrice());
+                    System.out.println("W " + totalamount);
                     System.out.println("1. 주문 | 2. 메뉴판");
                     if ("1".equals(sc.next())){
 //                        System.out.println("주문이 완료되었습니다. 금액은 W" + selectedMenu.getMenuItems().get(secondChoice-1).getPrice() +"입니다");
