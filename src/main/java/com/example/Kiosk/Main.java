@@ -24,6 +24,8 @@ public class Main {
             k.start(); // 키오스크 시작
         } catch (BadInputError e) {
             throw new RuntimeException(e); // 예외처리
+        } finally {
+            System.out.println("정상 작동 완료");
         }
 
 

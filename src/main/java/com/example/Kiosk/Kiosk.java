@@ -44,10 +44,10 @@ public class Kiosk {
                         break;
                     }
                     if (secondChoice < 0 || secondChoice > selectedMenu.getMenuItems().size()){ // 입력된 숫자가 0보다 작거나, 배열의 크기보다 크면 예외처리를 해버림
-                       throw new BadInputError();
+                       throw new BadInputError(secondChoice);
                     }
 
-                    MenuItem selectsecondmenu = selectedMenu.getMenuItems().get(secondChoice-1);
+                    MenuItem selectsecondmenu = selectedMenu.getMenuItems().get(secondChoice-1); // 상세 메뉴 고르기
                     System.out.println("선택한 메뉴 :" + selectsecondmenu);
                     System.out.println("==================================================================");
                     System.out.println("몇 개를 주문하시겠습니까?");
@@ -56,15 +56,16 @@ public class Kiosk {
                     System.out.println("==================================================================");
                     System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
                     System.out.println("1. 확인 | 2. 취소");
-                    if ("1".equals(sc.next())){
+                    int bagnum = sc.nextInt();
+                    if (bagnum == 1){
                         System.out.println(selectsecondmenu + "이 장바구니에 추가되었습니다.");
                         b.add(selectsecondmenu);
                         System.out.println("==================================================================");
-                    } else if ("2".equals(sc.nextLine())){
+                    } else if (bagnum == 2){
                         System.out.println("주문을 취소합니다.");
                         break;
                     } else {
-                        throw new BadInputError();
+                        throw new BadInputError(bagnum);
                     }
                     b.getBag(); // 장바구니에 있는 아이템 조회
                     System.out.println("주문한 상품 갯수:" + itemnum);
@@ -78,28 +79,39 @@ public class Kiosk {
                     System.out.println("[ ORDER MENU ]");
                     System.out.println("4. Orders | 장바구니를 확인 후 주문합니다.");
                     System.out.println("5. Cancel | 진행중인 주문을 취소합니다.");
-                    if("4".equals(sc.next())){
+                    int ocnum = sc.nextInt();
+                    if (ocnum == 4){
                         System.out.println("아래와 같이 주문하시겠습니까?");
-                    } else if ("5".equals(sc.next())) {
-                        System.out.println("진행중인 주문을 취소합니다");
+                    } else if (ocnum == 5) {
+                        System.out.println("진행중인 주문을 취소합니다.");
+                        b.clear(); // 장바구니에 있는 음식들 다 초기화를 함
                         break;
                     } else {
-                        throw new BadInputError();
+                        throw new BadInputError(ocnum);
                     }
+
                     System.out.println("====================================================");
                     System.out.println("[ Orders ]");
                     System.out.println(b.getBag());
                     System.out.println("====================================================");
                     System.out.println("[ Total ]");
+
                     double totalamount = b.bag.stream().mapToDouble(i -> Double.valueOf(i.getPrice()*itemnum)).sum(); // 장바구니에 있는 제품의 총 가격
-                    System.out.println("W " + totalamount);
+
+                    System.out.println("W " + totalamount); // 총 가격 출력
                     System.out.println("1. 주문 | 2. 메뉴판");
-                    if ("1".equals(sc.next())){
-                        System.out.println("주문이 완료되어 결제창으로 넘어갑니다.");
-                    } else if ("2".equals(sc.nextLine())){
-                        System.out.println("메뉴판으로 돌아갑니다.");
+
+                    int ordernum = sc.nextInt();
+
+                    if (ordernum == 1){
+                        System.out.println("주문을 성공하여 결제창으로 넘어갑니다");
+                    } else if (ordernum == 2) {
+                        System.out.println("메뉴판으로 돌아갑니다");
                         break;
+                    } else {
+                        throw new BadInputError(ordernum);
                     }
+
                     while (true){
                         System.out.println("할인정보를 입력해주세요"); // 사용자 유형별 할인 정하기
                         System.out.println("1. 국가 유공자 : 10%");
@@ -109,7 +121,7 @@ public class Kiosk {
                         int usernum = sc.nextInt(); // 사용자 유형을 입력받음
 
                         UserSale usertype = UserSale.getType(String.valueOf(usernum)); // 사용자 유형을 UserSale 클래스에 넘김
-                        double u1 = UserCalculator.calculator(usertype, totalamount);
+                        double u1 = UserCalculator.calculator(usertype, totalamount); // 사용자 유형과 총 가격을 UserCalculator로 넘김
                         System.out.println("주문이 완료 되었습니다. 금액은 W " + u1 + "입니다");
                         System.exit(0);
                     }

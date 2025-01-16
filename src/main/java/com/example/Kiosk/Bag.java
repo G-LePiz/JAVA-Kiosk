@@ -17,4 +17,8 @@ public class Bag { // 장바구니 클래스
         return bag;
     }
 
+    public void clear(){
+        bag.clear();
+    }
+
 }
