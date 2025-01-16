@@ -89,7 +89,7 @@ public class Kiosk {
                     } else {
                         throw new BadInputError(ocnum);
                     }
-// dasdsada
+
                     System.out.println("====================================================");
                     System.out.println("[ Orders ]");
                     System.out.println(b.getBag());
