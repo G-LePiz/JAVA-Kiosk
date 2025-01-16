@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bag { // 장바구니 클래스
-    static List<MenuItem> bag = new ArrayList<>();
+     List<MenuItem> bag = new ArrayList<>();
 
-    public static void add(MenuItem selectsecondmenu) {
+    public  void add(MenuItem selectsecondmenu) {
         bag.add(selectsecondmenu);
     }
 

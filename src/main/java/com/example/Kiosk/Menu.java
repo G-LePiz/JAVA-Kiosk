@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Menu {
     List<MenuItem> menuItems = new ArrayList<>(); //메뉴 아이템의 리스트를 선언
-    private String menus;
+    private String menus; // 메뉴 필드
 
-    public Menu(String menus) {
+    public Menu(String menus) { // 메뉴 생성자
         this.menus = menus;
         this.menuItems = new ArrayList<MenuItem>();
     }
@@ -28,7 +28,7 @@ public class Menu {
             System.out.println(i+1 + "." + menuItems.get(i));
         }
     }
-    public String toString(){
+    public String toString(){ // 주소값 출력을 String 출력으로 변경
         return menus;
     }
 }

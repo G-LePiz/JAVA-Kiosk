@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.example.Kiosk.Bag.bag;
 
 public class Kiosk {
     private List<Menu> menuList = new ArrayList<>(); // 메뉴 리스트 선언
@@ -64,6 +63,8 @@ public class Kiosk {
                     } else if ("2".equals(sc.nextLine())){
                         System.out.println("주문을 취소합니다.");
                         break;
+                    } else {
+                        throw new BadInputError();
                     }
                     b.getBag(); // 장바구니에 있는 아이템 조회
                     System.out.println("주문한 상품 갯수:" + itemnum);
@@ -85,34 +86,31 @@ public class Kiosk {
                     } else {
                         throw new BadInputError();
                     }
-
                     System.out.println("====================================================");
                     System.out.println("[ Orders ]");
                     System.out.println(b.getBag());
                     System.out.println("====================================================");
                     System.out.println("[ Total ]");
-                    Double totalamount = bag.stream().mapToDouble(i -> Double.valueOf(i.getPrice()*itemnum)).sum(); // 장바구니에 있는 제품을 다 더함.
+                    double totalamount = b.bag.stream().mapToDouble(i -> Double.valueOf(i.getPrice()*itemnum)).sum(); // 장바구니에 있는 제품의 총 가격
                     System.out.println("W " + totalamount);
                     System.out.println("1. 주문 | 2. 메뉴판");
                     if ("1".equals(sc.next())){
-//                        System.out.println("주문이 완료되었습니다. 금액은 W" + selectedMenu.getMenuItems().get(secondChoice-1).getPrice() +"입니다");
-//                        System.exit(0); // 주문후 시스템을 종료함
                         System.out.println("주문이 완료되어 결제창으로 넘어갑니다.");
                     } else if ("2".equals(sc.nextLine())){
                         System.out.println("메뉴판으로 돌아갑니다.");
-                        break; // 주문후 시스템을 종료함
+                        break;
                     }
                     while (true){
-                        System.out.println("할인정보를 입력해주세요");
+                        System.out.println("할인정보를 입력해주세요"); // 사용자 유형별 할인 정하기
                         System.out.println("1. 국가 유공자 : 10%");
                         System.out.println("2. 군인 : 5%");
                         System.out.println("3. 학생 : 3%");
                         System.out.println("4. 일반 : 0%");
-                        int usernum = sc.nextInt();
+                        int usernum = sc.nextInt(); // 사용자 유형을 입력받음
 
-                        UserSale usertype = UserSale.getType(String.valueOf(usernum));
+                        UserSale usertype = UserSale.getType(String.valueOf(usernum)); // 사용자 유형을 UserSale 클래스에 넘김
                         double u1 = UserCalculator.calculator(usertype, totalamount);
-                        System.out.println("주문이 완료 되었습니다. 금액은 W" + u1 + "입니다");
+                        System.out.println("주문이 완료 되었습니다. 금액은 W " + u1 + "입니다");
                         System.exit(0);
                     }
                 }
