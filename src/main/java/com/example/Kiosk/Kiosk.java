@@ -23,7 +23,7 @@ public class Kiosk {
                 }
                 System.out.println("0. 종료 | 종료");
                 int num = sc.nextInt(); // 숫자를 입력 받음
-                if (num == 0){
+                if (num == 0){ // 0을 입력시에 프로그램 종료
                     System.out.println("프로그램을 종료합니다.");
                     break;
                 }
@@ -67,10 +67,12 @@ public class Kiosk {
                     } else {
                         throw new BadInputError(bagnum);
                     }
+
                     b.getBag(); // 장바구니에 있는 아이템 조회
                     System.out.println("주문한 상품 갯수:" + itemnum);
                     System.out.println("추가로 더 주문하시겠습니까?");
                     System.out.println("1. 예 | 2. 아니요");
+
                     if ("1".equals(sc.next())){ // 1번을 누르면 다시 추가로 주문하는 목록
                         continue;
                     } else if ("2".equals(sc.nextLine())) {
@@ -83,7 +85,7 @@ public class Kiosk {
                     if (ocnum == 4){
                         System.out.println("아래와 같이 주문하시겠습니까?");
                     } else if (ocnum == 5) {
-                        System.out.println("진행중인 주문을 취소합니다.");
+                        System.out.println("진행중인 주문을 취소합니다. 장바구니가 초기화됩니다.");
                         b.clear(); // 장바구니에 있는 음식들 다 초기화를 함
                         break;
                     } else {
@@ -101,11 +103,11 @@ public class Kiosk {
                     System.out.println("W " + totalamount); // 총 가격 출력
                     System.out.println("1. 주문 | 2. 메뉴판");
 
-                    int ordernum = sc.nextInt();
+                    int ordernum = sc.nextInt(); // 주문, 메뉴판 선택
 
-                    if (ordernum == 1){
+                    if (ordernum == 1){ // 1번 입력시
                         System.out.println("주문을 성공하여 결제창으로 넘어갑니다");
-                    } else if (ordernum == 2) {
+                    } else if (ordernum == 2) { // 2번 입력시
                         System.out.println("메뉴판으로 돌아갑니다");
                         break;
                     } else {
