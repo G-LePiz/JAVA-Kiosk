@@ -15,6 +15,10 @@ public class MenuItem {
         return price;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public String toString(){ // toString을 사용하여, 주소값을 Stirng 형태로 변경함
         return name + " | W " + price + " | " + fooddetail;
     }
