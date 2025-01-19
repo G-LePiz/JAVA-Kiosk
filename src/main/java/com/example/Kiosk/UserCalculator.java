@@ -1,7 +1,7 @@
 package com.example.Kiosk;
 
 public class UserCalculator {
-    static double result;
+     static double result;
 
     public static double calculator(UserSale userSale, double totalresult){ // 소비자의 유형에 따라 할인을 계산하는 정보
         switch (userSale){

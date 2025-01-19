@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Kiosk {
     private List<Menu> menuList = new ArrayList<>(); // 메뉴 리스트 선언
     Bag b = new Bag();
+    UserCalculator uc = new UserCalculator();
      // 장바구니 리스트
     public Kiosk(List<Menu> menu){
         this.menuList = menu;
@@ -71,7 +72,6 @@ public class Kiosk {
                     b.getBag(); // 장바구니에 있는 아이템 조회
                     System.out.println("주문한 상품 갯수:" + itemNum);
                     b.add(itemNum); // 리스트에 주문한 갯수 추가
-//                    System.out.println(b.getFoodnum());
                     System.out.println("추가로 더 주문하시겠습니까?");
                     System.out.println("1. 예 | 2. 아니요");
 
@@ -118,6 +118,7 @@ public class Kiosk {
                     System.out.println("장바구니에서 제거할 아이템이 있습니까?");
                     System.out.println("1. 예 | 2. 아니요");
                     int bagRemove = sc.nextInt();
+                    sc.nextLine(); // 버퍼를 지우는 것
                     if(bagRemove == 1){
                         System.out.println("삭제할 메뉴를 입력해주세요.");
                         String itemName = sc.nextLine();
@@ -125,9 +126,8 @@ public class Kiosk {
                         System.out.println(removeItem);
                         System.out.println("삭제되었습니다.");
                     }
-
                         System.out.println("할인정보를 입력해주세요"); // 사용자 유형별 할인 정하기
-                        System.out.println("1. 국가 유공자 : 10%");
+                        System.out.println("1. 국가 유공자 : 10%"); // 국가 유공자
                         System.out.println("2. 군인 : 5%");
                         System.out.println("3. 학생 : 3%");
                         System.out.println("4. 일반 : 0%");
