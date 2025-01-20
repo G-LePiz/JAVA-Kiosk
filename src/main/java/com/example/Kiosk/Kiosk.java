@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class Kiosk {
     private List<Menu> menuList = new ArrayList<>(); // 메뉴 리스트 선언
-    Bag b = new Bag();
-    UserCalculator uc = new UserCalculator();
+    Bag b = new Bag(); // 장바구니
+    UserCalculator uc = new UserCalculator(); // 소비자별 할인율
      // 장바구니 리스트
-    public Kiosk(List<Menu> menu){
+    public Kiosk(List<Menu> menu){ // 키오스크 생성자
         this.menuList = menu;
     }
 
@@ -52,12 +52,12 @@ public class Kiosk {
                     System.out.println("선택한 메뉴 :" + selectSecondMenu);
                     System.out.println("==================================================================");
                     System.out.println("몇 개를 주문하시겠습니까?");
-                    int itemNum = sc.nextInt();
+                    int itemNum = sc.nextInt(); // 음식의 갯수를 입력받음
                     System.out.println("주문 갯수 : " + itemNum);
                     System.out.println("==================================================================");
                     System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
                     System.out.println("1. 확인 | 2. 취소");
-                    int bagNum = sc.nextInt();
+                    int bagNum = sc.nextInt(); // 번호를 입력받음
                     if (bagNum == 1){
                         System.out.println(selectSecondMenu + "이 장바구니에 추가되었습니다.");
                         b.add(selectSecondMenu);
@@ -66,11 +66,11 @@ public class Kiosk {
                         System.out.println("주문을 취소합니다.");
                         break;
                     } else {
-                        throw new BadInputError(bagNum);
+                        throw new BadInputError(bagNum); // 그 외의 값을 입력하면 예외처리
                     }
 
                     b.getBag(); // 장바구니에 있는 아이템 조회
-                    System.out.println("주문한 상품 갯수:" + itemNum);
+                    System.out.println("주문한 상품 갯수:" + itemNum); // 주문한 음식의 갯수를 출력
                     b.add(itemNum); // 리스트에 주문한 갯수 추가
                     System.out.println("추가로 더 주문하시겠습니까?");
                     System.out.println("1. 예 | 2. 아니요");
@@ -83,23 +83,22 @@ public class Kiosk {
                     System.out.println("[ ORDER MENU ]");
                     System.out.println("4. Orders | 장바구니를 확인 후 주문합니다.");
                     System.out.println("5. Cancel | 진행중인 주문을 취소합니다.");
-                    int ocNum = sc.nextInt();
-                    if (ocNum == 4){
+                    int ocNum = sc.nextInt(); // 번호를 입력 받음
+                    if (ocNum == 4){ // 4번 입력시
                         System.out.println("아래와 같이 주문하시겠습니까?");
-                    } else if (ocNum == 5) {
+                    } else if (ocNum == 5) { //5번 입력시
                         System.out.println("진행중인 주문을 취소합니다. 장바구니가 초기화됩니다.");
                         b.clear(); // 장바구니에 있는 음식들 다 초기화를 함
                         break;
                     } else {
-                        throw new BadInputError(ocNum);
+                        throw new BadInputError(ocNum); // 그 외의 숫자를 입력하면 예외처리를 함
                     }
 
                     System.out.println("====================================================");
                     System.out.println("[ Orders ]");
                     System.out.println("현재 장바구니 상태 ");
-                    b.getBag();
+                    b.getBag(); // 장바구니의 상태를 보여주는 메서드
                     System.out.println("주문한 개수: " + b.getFoodnum());
-//                    b.getFoodnum();
                     System.out.println("====================================================");
                     System.out.println("[ Total ]");
 
@@ -113,7 +112,7 @@ public class Kiosk {
                         System.out.println("메뉴판으로 돌아갑니다");
                         break;
                     }  else {
-                        throw new BadInputError(orderNum);
+                        throw new BadInputError(orderNum); // 잘못된 값을 넣으면 예외처리
                     }
                     System.out.println("장바구니에서 제거할 아이템이 있습니까?");
                     System.out.println("1. 예 | 2. 아니요");
@@ -128,15 +127,15 @@ public class Kiosk {
                     }
                         System.out.println("할인정보를 입력해주세요"); // 사용자 유형별 할인 정하기
                         System.out.println("1. 국가 유공자 : 10%"); // 국가 유공자
-                        System.out.println("2. 군인 : 5%");
-                        System.out.println("3. 학생 : 3%");
-                        System.out.println("4. 일반 : 0%");
+                        System.out.println("2. 군인 : 5%"); // 군인
+                        System.out.println("3. 학생 : 3%"); // 학생
+                        System.out.println("4. 일반 : 0%"); // 일반
                         int userNum = sc.nextInt(); // 사용자 유형을 입력받음
 
                         UserSale userType = UserSale.getType(String.valueOf(userNum)); // 사용자 유형을 UserSale 클래스에 넘김
                         double userTypeTotalPrice = UserCalculator.calculator(userType, b.getResult()); // 사용자 유형과 총 가격을 UserCalculator로 넘김
-                        System.out.println("주문이 완료 되었습니다. 금액은 W " + userTypeTotalPrice + "입니다");
-                        System.exit(0);
+                        System.out.println("주문이 완료 되었습니다. 금액은 W " + userTypeTotalPrice + "입니다"); // 출력을 함
+                        System.exit(0); // 시스템 종료
 
 
 
