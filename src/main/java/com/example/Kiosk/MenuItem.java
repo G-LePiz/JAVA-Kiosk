@@ -15,7 +15,7 @@ public class MenuItem {
         return price;
     }
 
-    public String getName(){
+    public String getName(){ // 음식의 이름을 조회
         return name;
     }
 

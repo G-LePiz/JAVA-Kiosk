@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Bag { // 장바구니 클래스
-     List<MenuItem> bag = new ArrayList<>();
-     List<Integer> foodnum = new ArrayList<>();
-     double result;
+     List<MenuItem> bag = new ArrayList<>(); // 장바구니 리스트 선언
+     List<Integer> foodnum = new ArrayList<>(); // 음식의 갯수 리스트 선언
+     double result; // 결과 필드
 
-    public void add(MenuItem selectsecondmenu) { // 장바구니 추가
+    public void add(MenuItem selectsecondmenu) { // 장바구니를 리스트에 추가 메서드
         bag.add(selectsecondmenu);
     }
 
-    public List<MenuItem> getBag() { // 장바구니 조회
+    public List<MenuItem> getBag() { /* 장바구니 조회 메서드 */
         for (int i=0; i<bag.size(); i++){
             //System.out.println(bag.get(i));
             System.out.println(bag.get(i));
@@ -33,19 +33,18 @@ public class Bag { // 장바구니 클래스
     public List<Integer> getFoodnum() { // 음식의 갯수 조회
         for (int i = 0; i < foodnum.size(); i++) {
             foodnum.get(i);
-//            System.out.println(foodnum.get(i));
         }
         return foodnum;
     }
 
-    public double totalmoney(){ // 구매한 수에 비례한 총 가격
+    public double totalmoney(){ // 총 가격
         for (int i = 0; i < bag.size(); i++) {
             result += bag.get(i).getPrice() * foodnum.get(i);
         }
         return result;
     }
 
-    public double getResult() {
+    public double getResult() { // 총 가격을 조회하는 메서드
         return result;
     }
 
